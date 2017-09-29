@@ -2,14 +2,12 @@ import urllib.request
 import json
 
 class OpenWeather:
-    def __init__(self, zip_code, country, units, api_key,cur_temp=None,low_temp=None,high_temp=None,loc_name=None):
+    def __init__(self, zip_code, country, units, api_key,cur_temp=None,loc_name=None):
         self.units = units
         self.country = country
         self.zip_code = zip_code
         self.api_key = api_key
         self.cur_temp = cur_temp
-        self.low_temp = low_temp
-        self.high_temp = high_temp
         self.loc_name = loc_name
 
     def get_data(self):
@@ -17,8 +15,6 @@ class OpenWeather:
             data = json.loads(url.read().decode())
             for key, value in data.items():
                 if key == 'main':
-                    self.cur_temp = value['temp']
-                    self.low_temp = value['temp_min']
-                    self.high_temp = value['temp_max']
+                    self.cur_temp = round(value['temp'], 1)
                 elif key == 'name':
                     self.loc_name = value
