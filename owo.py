@@ -4,3 +4,6 @@ owo = openweather.OpenWeather('01844', 'us', 'imperial', '60b91248e90de082739c85
 
 owo.get_data()
 print(owo.cur_temp)
+print(owo.low_temp)
+print(owo.high_temp)
+print(owo.loc_name)
